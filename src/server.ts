@@ -5,8 +5,8 @@ import 'babel-polyfill';
 import express = require('express');
 import { urlencoded, json } from 'body-parser';
 import * as mongoose from 'mongoose';
-import graffiti from '@risingstack/graffiti';
-import { getSchema } from '@risingstack/graffiti-mongoose';
+import * as graffiti from '@risingstack/graffiti';
+import * as gmongoose from '@risingstack/graffiti-mongoose';
 import NutritionData from './models/NutritionData';
 
 const app = express();
@@ -18,7 +18,7 @@ app.use(urlencoded({ extended: true }));
 app.use(json());
 
 app.use(graffiti.express({
-  schema: getSchema([NutritionData])
+  schema: gmongoose.getSchema([NutritionData])
 }));
 
 const port = process.env.PORT || 8080;
