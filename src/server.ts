@@ -7,27 +7,27 @@ import { urlencoded, json } from 'body-parser';
 import * as mongoose from 'mongoose';
 import * as graffiti from '@risingstack/graffiti';
 import * as gmongoose from '@risingstack/graffiti-mongoose';
-import NutritionData from './models/NutritionData';
+import {Food} from './models/Food';
 
 const app = express();
 mongoose.connect('mongodb://localhost:27017/myhealth_dev');
 
-let NutritionDataController = require('./controllers/NutritionDataController');
+let FoodController = require('./controllers/FoodController');
 
 app.use(urlencoded({ extended: true }));
 app.use(json());
 
 app.use(graffiti.express({
-  schema: gmongoose.getSchema([NutritionData])
+  schema: gmongoose.getSchema([Food])
 }));
 
 const port = process.env.PORT || 8080;
 
 const router = express.Router();
 
-async function getNutritionData(req, res) {
+async function getFood(req, res) {
   try {
-    var data = await NutritionDataController.getAll('some dude');
+    var data = await FoodController.getAll();
     res.json(data);
   }
   catch (e) {
@@ -37,8 +37,8 @@ async function getNutritionData(req, res) {
 
 router.get('/', (req, res) => res.json({ message: 'hooray! welcome to our api!' }));
 
-router.route('/nutrition-data')
-  .get(getNutritionData);
+router.route('/food')
+  .get(getFood);
 
 app.use('/api', router);
 
