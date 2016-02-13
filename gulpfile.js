@@ -8,7 +8,7 @@ const babel = require('gulp-babel');
 var tsProject = ts.createProject(require('./tsconfig.json').compilerOptions);
 
 gulp.task('default', () => {
-  return gulp.src(['src/**/*.ts'])
+  return gulp.src(['source/**/*.ts'])
     .pipe(sourcemaps.init())
     .pipe(ts(tsProject))
     .pipe(babel())
@@ -17,5 +17,5 @@ gulp.task('default', () => {
 });
 
 gulp.task('watch', ['default'], function() {
-  gulp.watch('src/**/*.ts', ['default']);
+  gulp.watch('source/**/*.ts', ['default']);
 });
