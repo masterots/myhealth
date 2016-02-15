@@ -3,13 +3,13 @@ import 'babel-polyfill';
 
 import * as mongoose from 'mongoose';
 mongoose.connect('mongodb://localhost:27017/myhealth_dev');
-import {Food, BodyMeasurement, Exercise, Recipe, FoodDiary} from '../models';
+import {Food, BodyMeasurement, ExerciseDiary, Recipe, FoodDiary} from '../models';
 
 async function cleanData() {
   try {
     const foodClear = await Food.remove({});
     const bodyMeasurementsClear = await BodyMeasurement.remove({});
-    const exercisesClear = await Exercise.remove({});
+    const exerciseDiaryClear = await ExerciseDiary.remove({});
     return;
   } catch (error) {
     throw new Error(error);
@@ -36,7 +36,7 @@ async function insertBodyMeasurements() {
 
 async function insertExercises() {
   try {
-    const result = await Exercise.insertMany(require('../../seed-data/exercise.json'));
+    const result = await ExerciseDiary.insertMany(require('../../seed-data/exercise.json'));
     return result;
   } catch (error) {
     throw new Error(error);

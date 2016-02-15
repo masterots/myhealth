@@ -6,11 +6,11 @@ import express = require('express');
 import * as path from 'path';
 import { urlencoded, json } from 'body-parser';
 import * as mongoose from 'mongoose';
-import * as graffiti from '@risingstack/graffiti';
-import * as gmongoose from '@risingstack/graffiti-mongoose';
-import {Food, BodyMeasurement, Exercise, Recipe, FoodDiary} from './models';
+
 const app = express();
 mongoose.connect('mongodb://localhost:27017/myhealth_dev');
+
+import { ExerciseDiaryController } from './controllers';
 
 let FoodController = require('./controllers/FoodController');
 
@@ -19,10 +19,6 @@ app.use(urlencoded({ extended: true }));
 app.use(json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '..', 'bower_components')));
-
-app.use(graffiti.express({
-  schema: gmongoose.getSchema([Food, BodyMeasurement, Exercise, Recipe, FoodDiary])
-}));
 
 const port = process.env.PORT || 8080;
 
@@ -41,13 +37,18 @@ async function getFood(req, res) {
 
 apiRouter.get('/', (req, res) => res.json({ message: 'hooray! welcome to our api!' }));
 
-apiRouter.route('/food')
+apiRouter.route('/foods')
   .get(getFood);
 
+apiRouter.route('/exerciseDiary')
+  .get(ExerciseDiaryController.getAll)
+  .post(ExerciseDiaryController.add);
+
 pageRouter.get('/', (req, res) => res.render('react-reports'));
+pageRouter.get('/admin', (req, res) => res.render('react-admin'));
 
 app.use('/api', apiRouter);
-app.use('/', pageRouter);
+app.use('/react', pageRouter);
 
 app.listen(port);
 console.log(`Magic happens on port ${port}`);

@@ -34,17 +34,6 @@ class FoodController {
       throw new Error(e);
     }
   }
-
-  // public static async seedDb() {
-  //   try {
-  //     const result = await Food.insertMany(seedItems);
-  //     return result;
-  //   }
-  //   catch (e) {
-  //     console.log(e);
-  //     throw new Error(e);
-  //   }
-  // }
 }
 
 module.exports = FoodController;

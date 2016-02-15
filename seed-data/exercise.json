@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "type": "cardio",
+    "cardio": {
+      "distance": 1.07,
+      "measure": "mi",
+      "elapsedTime": "13:37"
+    },
+    "name": "run",
+    "logDate": "2016-02-13",
+    "createdDate": "2016-02-13"
+  },
+  {
+    "type": "strength",
+    "sets": [
+      {
+        "order": 1,
+        "reps": 5,
+        "weight": 110,
+        "measure": "lb"
+      },{
+        "order": 2,
+        "reps": 5,
+        "weight": 110,
+        "measure": "lb"
+      },{
+        "order": 3,
+        "reps": 5,
+        "weight": 110,
+        "measure": "lb"
+      },{
+        "order": 4,
+        "reps": 5,
+        "weight": 110,
+        "measure": "lb"
+      },{
+        "order": 5,
+        "reps": 5,
+        "weight": 110,
+        "measure": "lb"
+      }
+    ],
+    "name": "run",
+    "logDate": "2016-02-13",
+    "createdDate": "2016-02-13"
+  }
+]

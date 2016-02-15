@@ -3,6 +3,10 @@
     "target": "es6",
     "module": "commonjs",
     "experimentalDecorators": true,
-    "allowJs": true
-  }
+    "allowJs": true,
+    "jsx": "react"
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
